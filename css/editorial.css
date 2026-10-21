@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Amalfi Beauty Hair — editorial.css
+   Editorial layer loaded last: overrides base.css + sections.css.
+   References: palmsunday.co (full-bleed split, square corners, uppercase
+   labels), rossanoferretti.com (serif display, wide photography).
+   Rules: square corners, no card chrome, no decorative gradients, scale
+   contrast between sections, motion only on photography.
+   ========================================================================== */
+
+:root {
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 0;
+  --radius-btn: 2px;
+  --fs-h1: clamp(3.25rem, 1.6rem + 6.4vw, 7.5rem);
+  --fs-h2: clamp(2.5rem, 1.6rem + 3.4vw, 4.75rem);
+  --fs-label: 0.75rem;
+  --tracking-label: 0.2em;
+  --rule: 1px solid var(--color-border);
+
+  /* Booking CTAs wear the brand gold (ink text on #C9A66B = 7.3:1). Hover sweeps to ink. */
+  --color-cta: #C9A66B;
+  --color-cta-line: #9A7232;
+  --color-whatsapp: var(--color-primary); /* text-safe bronze for inline WhatsApp links */
+  --color-whatsapp-hover: var(--color-primary-hover);
+}
+
+/* ---------- Typography ---------- */
+h1 { line-height: 0.98; letter-spacing: -0.025em; }
+h2 { line-height: 1.02; letter-spacing: -0.02em; }
+h1 em, h2 em { color: var(--color-gold-deep); }
+.section--dark h2 em { color: var(--color-accent); }
+
+.eyebrow { gap: 0; font-size: var(--fs-label); font-weight: 500; letter-spacing: var(--tracking-label); }
+.eyebrow::before { display: none; }
+
+/* ---------- Buttons: rectangular, tracked caps, hairline detail ---------- */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 3.25rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--radius-btn);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: color 400ms var(--ease), background-color 400ms var(--ease), border-color 400ms var(--ease);
+}
+.btn:active { transform: none; }
+.btn svg { width: 1rem; height: 1rem; }
+.btn--lg { min-height: 3.75rem; padding-inline: 2.5rem; font-size: var(--fs-label); }
+
+/* Fill that sweeps in from the left on hover */
+.btn::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background: var(--btn-sweep, var(--color-ink));
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 500ms var(--ease);
+}
+.btn:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.btn--primary { background: var(--color-ink); color: var(--color-on-dark); box-shadow: none; --btn-sweep: var(--color-primary); }
+.btn--primary:hover { background: var(--color-ink); color: #FFFFFF; box-shadow: none; }
+.btn--outline { border-color: var(--color-ink); color: var(--color-ink); --btn-sweep: var(--color-ink); }
+.btn--outline:hover { background: transparent; border-color: var(--color-ink); color: var(--color-on-dark); }
+.section--dark .btn--outline { border-color: color-mix(in srgb, var(--color-on-dark) 60%, transparent); --btn-sweep: var(--color-on-dark); }
+.section--dark .btn--outline:hover { background: transparent; color: var(--color-dark); }
+
+.btn--ghost { padding-inline: 0; min-height: 2.75rem; border-bottom: 1px solid currentColor; border-radius: 0; color: var(--color-ink); }
+.btn--ghost::after { display: none; }
+.btn--ghost:hover { color: var(--color-gold-deep); text-decoration: none; }
+
+.btn--whatsapp {
+  background: var(--color-cta);
+  color: var(--color-ink);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--color-cta-line);
+  --btn-sweep: var(--color-ink);
+}
+.btn--whatsapp:hover { background: var(--color-cta); color: var(--color-gold-light); box-shadow: inset 0 0 0 1px var(--color-ink); transform: none; }
+.btn--whatsapp svg { width: 1.125rem; height: 1.125rem; }
+.section--dark .btn--whatsapp { box-shadow: none; --btn-sweep: var(--color-on-dark); }
+.section--dark .btn--whatsapp:hover { color: var(--color-ink); }
+.section--dark .booking__card .btn--whatsapp { --btn-sweep: var(--color-ink); }
+.section--dark .booking__card .btn--whatsapp:hover { color: var(--color-gold-light); }
+
+/* Floating WhatsApp: gold tile, ink icon */
+.fab {
+  height: 3.5rem; min-width: 3.5rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-cta); color: var(--color-ink);
+  box-shadow: inset 0 0 0 1px var(--color-cta-line), 0 12px 32px -12px rgb(30 25 22 / 0.45);
+  font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+}
+.fab:hover { transform: translateY(-2px); background: var(--color-ink); color: var(--color-gold-light); }
+.fab svg { width: 1.5rem; height: 1.5rem; }
+.fab::before { background: var(--color-cta); animation-duration: 3.2s; }
+@keyframes fab-pulse { 0% { transform: scale(1); opacity: 0.4; } 70%, 100% { transform: scale(1.18, 1.35); opacity: 0; } }
+
+/* ---------- Header ---------- */
+.site-header.is-scrolled { box-shadow: none; }
+.nav__link { font-size: var(--fs-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+.site-header__cta { min-height: 2.75rem; padding: 0.625rem 1.25rem; }
+
+/* ---------- Generic surfaces ---------- */
+.card { border-radius: 0; box-shadow: none; }
+.tag { padding: 0; border-radius: 0; background: none; color: inherit; font-size: var(--fs-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+.media { border-radius: 0; }
+
+/* Motion only on photography: a slow settle instead of fade-up on everything */
+.js .reveal { opacity: 1; transform: none; transition: none; }
+.js .reveal .media img { transform: scale(1.06); transition: transform 1.6s var(--ease); }
+.js .reveal.is-visible .media img { transform: none; }
+
+.section-head--split { max-width: none; margin-bottom: var(--space-8); }
+@media (min-width: 56rem) {
+  .section-head--split { grid-template-columns: 7fr 5fr; column-gap: var(--space-8); align-items: end; }
+  .section-head--split .eyebrow { grid-column: 1 / -1; }
+  .section-head--split .lead { font-size: var(--fs-base); }
+}
+
+/* ---------- Hero: full-bleed split ---------- */
+.hero { padding: 0; min-height: 0; display: block; }
+.hero::before { display: none; }
+.hero__grid { display: grid; }
+.hero__text { --stack-gap: var(--space-5); padding: var(--space-8) var(--gutter) var(--space-7); }
+.hero__text h1 { max-width: 11ch; }
+.hero__text .lead { max-width: 30rem; font-size: var(--fs-base); }
+.hero__visual { position: relative; width: 100%; max-width: none; margin: 0; }
+.hero__media { --ratio: 4 / 5; height: 100%; box-shadow: none; }
+.hero__media::after { display: none; }
+.hero__caption {
+  position: absolute; left: var(--gutter); right: var(--gutter); bottom: var(--space-5);
+  display: grid; gap: var(--space-1);
+  max-width: 22rem;
+  color: #FFFFFF; font-size: var(--fs-sm); line-height: 1.4;
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.35);
+}
+.hero__caption-title { font-family: var(--font-display); font-size: var(--fs-lg); }
+@media (min-width: 56rem) {
+  .hero__grid { grid-template-columns: 1.15fr 1fr; min-height: calc(100svh - var(--header-h)); }
+  .hero__text {
+    justify-content: center;
+    padding-block: var(--space-8);
+    padding-inline-start: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    padding-inline-end: var(--space-8);
+  }
+  .hero__media { aspect-ratio: auto; position: absolute; inset: 0; }
+}
+
+/* ---------- Serviços: alternating editorial rows ---------- */
+.pillars { display: grid; gap: 0; border-top: var(--rule); }
+.pillar { display: grid; gap: var(--space-5); padding-block: var(--space-6); border-bottom: var(--rule); }
+.pillar .media { --ratio: 4 / 5; }
+.pillar__body { padding: 0; gap: var(--space-4); align-self: center; }
+.pillar__body > p { max-width: 36rem; }
+.pillar__meta { display: flex; align-items: baseline; gap: var(--space-4); font-size: var(--fs-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-ink-muted); }
+.pillar__num { font-family: var(--font-display); font-size: var(--fs-lg); letter-spacing: 0; color: var(--color-gold-deep); }
+.pillar .service-card__title { font-size: clamp(2rem, 1.4rem + 2.4vw, 3.5rem); line-height: 1; letter-spacing: -0.02em; }
+.pillar .btn { align-self: flex-start; margin-top: var(--space-3); }
+@media (min-width: 48rem) {
+  .pillar { grid-template-columns: 5fr 7fr; gap: var(--space-8); padding-block: var(--space-7); }
+  .pillar .media { max-width: 26rem; }
+  .pillar:nth-child(even) .media { order: 2; justify-self: end; width: 100%; }
+}
+.services__footer { align-items: flex-start; text-align: left; margin-top: var(--space-7); }
+.services__footer p { margin-inline: 0; }
+
+/* ---------- Porquê: sticky heading, ruled list ---------- */
+.porque__grid { display: grid; gap: var(--space-6); }
+.porque__head { margin-bottom: 0; align-self: start; }
+.reasons { display: grid; border-top: 1px solid var(--color-ink); }
+.reason { display: grid; gap: var(--space-2); padding: var(--space-6) 0; border-bottom: var(--rule); height: auto; }
+.reason__num { font-size: var(--fs-sm); font-family: var(--font-body); letter-spacing: var(--tracking-label); color: var(--color-gold-deep); }
+.reason__title { font-size: var(--fs-h3); }
+.reason p { color: var(--color-ink-muted); }
+@media (min-width: 56rem) {
+  .porque__grid { grid-template-columns: 5fr 7fr; gap: var(--space-9); }
+  .porque__head { position: sticky; top: calc(var(--header-h) + var(--space-6)); }
+  .reason { grid-template-columns: 4rem 1fr; column-gap: var(--space-5); }
+  .reason__num { grid-row: span 2; padding-top: 0.5em; }
+}
+
+/* ---------- Sobre & Espaço ---------- */
+.about__visual { padding: 0; width: 100%; max-width: 32rem; }
+.about__media { box-shadow: none; }
+.about__stats { border-top: 1px solid var(--color-ink); }
+.about__stats .stat__value { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); font-weight: 500; color: var(--color-ink); white-space: nowrap; }
+.about__cta { align-items: flex-start; }
+.espaco { gap: var(--space-3); margin-top: var(--space-9); }
+.espaco .media { box-shadow: none; }
+@media (min-width: 48rem) {
+  .espaco { grid-template-columns: 2fr 1fr 1fr 1.4fr; align-items: end; gap: var(--space-3); }
+  .espaco li:nth-child(1) .media { --ratio: 4 / 5; }
+  .espaco li:nth-child(2) .media, .espaco li:nth-child(3) .media { --ratio: 2 / 3; }
+  .espaco li:nth-child(4) .media { --ratio: 3 / 4; }
+}
+
+/* ---------- Galeria ---------- */
+.gallery { gap: var(--space-3); }
+.gallery__item--link a { border-radius: 0; }
+.gallery__caption {
+  left: 0; right: 0; bottom: 0;
+  padding: var(--space-6) var(--space-4) var(--space-4);
+  border-radius: 0;
+  background: linear-gradient(to top, rgb(30 25 22 / 0.75), transparent);
+}
+.gallery__caption .tag { flex-basis: 100%; color: var(--color-gold-light); }
+.gallery__more { justify-content: flex-start; margin-top: var(--space-7); gap: var(--space-6); }
+
+/* ---------- Marcações: two columns on the dark band ---------- */
+.booking__grid { display: grid; gap: var(--space-7); align-items: start; }
+.booking__side .section-head { margin-bottom: var(--space-6); }
+.channel--main {
+  max-width: none; margin: 0; padding: var(--space-6) 0 0;
+  text-align: left; align-items: flex-start;
+  border-top: 1px solid color-mix(in srgb, var(--color-on-dark) 20%, transparent);
+}
+.channel--main .channel__icon { display: none; }
+.channel__number { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); letter-spacing: -0.01em; }
+.section--dark .booking__card { max-width: none; margin: 0; box-shadow: none; border: 0; }
+.booking__title { text-align: left; }
+.booking__intro { text-align: left; margin-inline: 0; }
+.booking__alt { text-align: left; margin-inline: 0; }
+@media (min-width: 64rem) {
+  .booking__grid { grid-template-columns: 5fr 6fr; gap: var(--space-9); }
+  .booking__side { position: sticky; top: calc(var(--header-h) + var(--space-6)); }
+}
+
+/* ---------- Forms ---------- */
+.input, .select, .textarea { border-radius: 0; border-width: 0 0 1px; border-color: var(--color-ink-muted); background-color: transparent; padding-inline: 0; }
+.select { background-position: right 0 center; }
+.field label { font-size: var(--fs-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-ink-muted); }
+
+/* ---------- Contacto & footer ---------- */
+.map-embed { border-radius: 0; box-shadow: none; }
+.contact__text .cluster { gap: var(--space-3); }

@@ -1,0 +1,238 @@
+/* ==========================================================================
+   Amalfi Beauty Hair — sections.css
+   Section-specific layout. Uses tokens from base.css only.
+   ========================================================================== */
+
+/* ---------- Shared ---------- */
+.media { background: var(--gradient-aurora); } /* shows while photos load */
+.media--dusk { background: var(--gradient-dusk); }
+main:focus { outline: none; }
+
+/* ---------- Header ---------- */
+.nav-toggle__close { display: none; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__open { display: none; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__close { display: block; }
+@media (max-width: 63.99rem) {
+  .nav { max-height: calc(100vh - var(--header-h)); overflow-y: auto; }
+}
+@media (min-width: 64rem) {
+  .nav { margin-inline: auto; }
+}
+
+/* ---------- Início ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-7) var(--section-y);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -10%; right: -15%;
+  width: min(90vw, 48rem); aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--gradient-petal);
+  opacity: 0.8;
+  filter: blur(40px);
+  pointer-events: none;
+}
+.hero__grid { position: relative; gap: var(--space-7); }
+.hero__text { --stack-gap: var(--space-5); }
+.hero__text .lead { max-width: 34rem; }
+.hero__actions { --cluster-gap: var(--space-3); }
+.hero__visual { position: relative; width: min(100%, 26rem); margin-inline: auto; }
+.hero__media { --ratio: 4 / 5; box-shadow: var(--shadow-lg); }
+.hero__media::after { /* thin gold inner line, echo of the logo badge */
+  content: ""; position: absolute; inset: var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 70%, transparent);
+  border-radius: inherit; pointer-events: none;
+}
+.hero__badge {
+  position: absolute;
+  left: calc(-1 * var(--space-4)); bottom: var(--space-6);
+  max-width: 16rem;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+.hero__badge-title { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 500; color: var(--color-primary); line-height: 1.25; }
+@media (min-width: 48rem) {
+  .hero { min-height: min(88vh, 56rem); display: flex; align-items: center; padding-block: var(--space-8); }
+  .hero__grid { grid-template-columns: 1.1fr 0.9fr; }
+  .hero__visual { width: 100%; max-width: 30rem; margin-inline: auto 0; }
+  .hero__badge { left: calc(-1 * var(--space-7)); }
+}
+@media (max-width: 29.99rem) {
+  .hero__actions .btn { width: 100%; }
+  .hero__visual { width: 85%; }
+}
+
+/* ---------- Serviços ---------- */
+.pillars { gap: var(--space-5); }
+@media (min-width: 36rem) and (max-width: 63.99rem) {
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+}
+.pillar .service-card__title { font-size: var(--fs-h3); }
+.pillar .btn--ghost { align-self: flex-start; padding-inline: 0; }
+.services__footer { --stack-gap: var(--space-5); align-items: center; text-align: center; margin-top: var(--space-7); }
+.services__footer p { margin-inline: auto; }
+
+/* ---------- Sobre & Espaço ---------- */
+.about__grid { gap: var(--space-8); }
+.about__visual { position: relative; width: min(100%, 28rem); margin-inline: auto; padding: 0 var(--space-6) var(--space-6) 0; }
+.about__media { --ratio: 4 / 5; position: relative; z-index: 1; box-shadow: var(--shadow-md); }
+.about__accent {
+  --ratio: 1;
+  position: absolute; right: 0; bottom: 0;
+  width: 55%;
+  border-radius: var(--radius-lg);
+}
+.about__text { --stack-gap: var(--space-4); }
+.about__head { margin-bottom: var(--space-3); }
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--color-border);
+  list-style: none;
+}
+.about__stats .stat__value { font-size: var(--fs-h3); }
+@media (min-width: 48rem) {
+  .about__stats .stat + .stat { padding-left: var(--space-5); border-left: 1px solid var(--color-border); }
+}
+
+/* O Espaço: 4 client photos of the salon under #sobre */
+.espaco { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); list-style: none; padding: 0; margin-top: var(--space-8); }
+.espaco .media { --ratio: 3 / 4; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+@media (min-width: 48rem) { .espaco { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); } }
+
+/* ---------- Galeria ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+}
+.gallery figure { position: relative; height: 100%; }
+.gallery__item--link a { display: block; height: 100%; color: inherit; text-decoration: none; border-radius: var(--radius-lg); }
+.gallery .media { --ratio: 4 / 3; height: 100%; }
+.gallery .media img { transition: transform var(--dur-slow) var(--ease); }
+.gallery__item:hover .media img { transform: scale(1.04); }
+.gallery__caption {
+  position: absolute; left: var(--space-3); right: var(--space-3); bottom: var(--space-3);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-dark) 80%, transparent);
+  color: var(--color-on-dark);
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+}
+.gallery__item--link .media img { object-position: center 40%; }
+.gallery__item--link .gallery__caption { background: transparent; color: var(--color-on-dark); font-family: var(--font-display); font-size: var(--fs-lg); }
+.gallery__more { margin-top: var(--space-6); max-width: none; }
+@media (min-width: 36rem) {
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 15rem; }
+  .gallery .media { aspect-ratio: auto; }
+  .gallery__item--tall { grid-row: span 2; }
+  .gallery__item--link { grid-column: span 2; } /* fills the 2-column grid */
+}
+@media (min-width: 64rem) {
+  .gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 17rem; gap: var(--space-5); }
+  .gallery__item--link { grid-column: auto; } /* 3 tall + 3 single = full 3x3 */
+}
+
+/* ---------- Marcações (dark band) ---------- */
+.booking { position: relative; overflow: hidden; isolation: isolate; }
+.section--dark .card {
+  background: color-mix(in srgb, var(--color-on-dark) 6%, transparent);
+  border-color: color-mix(in srgb, var(--color-on-dark) 14%, transparent);
+  box-shadow: none;
+}
+.section--dark .channel__icon { background: color-mix(in srgb, var(--color-accent) 18%, transparent); color: var(--color-accent); }
+.channels { margin-bottom: var(--space-7); }
+.channel h3 { font-size: var(--fs-h4); }
+.channel .btn { white-space: normal; text-align: center; }
+.section--dark .pending { color: var(--color-on-dark-muted); }
+
+/* The request form sits on a light card inside the dark band */
+.section--dark .booking__card {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-5);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-lg);
+}
+.booking__card :focus-visible { outline-color: var(--color-focus); }
+.section--dark .booking__card h3 { color: var(--color-ink); }
+.section--dark .booking__card .btn--outline { color: var(--color-primary); border-color: var(--color-primary); }
+.section--dark .booking__card .btn--outline:hover { background: var(--color-primary); color: #FFFFFF; border-color: var(--color-primary); }
+.booking__title { text-align: center; margin-bottom: var(--space-6); font-size: var(--fs-h3); }
+.booking__status { min-height: 1.5em; font-size: var(--fs-sm); font-weight: 500; color: var(--color-success); text-align: center; margin-inline: auto; }
+.booking__result { font-size: var(--fs-sm); text-align: center; margin-inline: auto; }
+.booking__result[hidden] { display: none; }
+.booking__result a { color: var(--color-whatsapp); font-weight: 600; }
+@media (min-width: 40rem) {
+  .section--dark .booking__card { padding: var(--space-7); }
+}
+
+/* ---------- Contacto ---------- */
+.contact__grid { gap: var(--space-7); align-items: start; }
+.contact__text { --stack-gap: var(--space-6); }
+.contact__head { margin-bottom: 0; }
+.info-list__title { font-family: var(--font-body); font-size: var(--fs-base); font-weight: 600; line-height: var(--lh-snug); margin-bottom: var(--space-1); }
+.info-list address { font-style: normal; }
+@media (min-width: 48rem) {
+  .map-embed { position: sticky; top: calc(var(--header-h) + var(--space-6)); align-self: center; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer { padding-block: var(--space-8) var(--space-6); }
+.site-footer__top {
+  display: grid;
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-on-dark) 14%, transparent);
+}
+.site-footer__brand { --stack-gap: var(--space-3); }
+.site-footer .logo img { width: auto; height: 7.5rem; }
+.site-footer__brand address { font-style: normal; }
+.site-footer__links, .site-footer__social { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
+.site-footer__links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.site-footer a:not(.logo) { text-decoration: none; font-size: var(--fs-sm); }
+.site-footer a:not(.logo):hover { text-decoration: underline; }
+.site-footer__social a { display: inline-flex; align-items: center; gap: var(--space-2); }
+.site-footer__social svg { width: 1.125rem; height: 1.125rem; color: var(--color-accent); }
+.site-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-5); padding-top: var(--space-5); }
+.site-footer__copy, .site-footer__credit { max-width: none; }
+@media (min-width: 48rem) {
+  .site-footer__top { grid-template-columns: 1.4fr 1fr 1fr; align-items: start; }
+}
+@media (max-width: 47.99rem) {
+  .site-footer { padding-bottom: calc(var(--space-6) + 4rem); } /* keep the FAB clear */
+}
+
+/* Porquê a Amalfi: 4 reasons */
+.reason { display: flex; flex-direction: column; gap: var(--space-3); height: 100%; }
+.reason__num { font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-accent); line-height: 1; }
+.reason__title { font-size: var(--fs-h4); }
+
+/* Sobre CTA */
+.about__cta { --stack-gap: var(--space-2); margin-top: var(--space-5); align-items: flex-start; }
+
+/* Marcações: WhatsApp as the main channel */
+.channel--main { max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; align-items: center; }
+.channel--main .btn { margin-top: var(--space-2); }
+.channel__number { font-family: var(--font-display); font-size: var(--fs-h3); }
+.channel__number a { color: inherit; text-decoration: none; }
+.section--dark .channel__micro { color: var(--color-on-dark-muted); }
+.booking__intro { text-align: center; margin: calc(-1 * var(--space-4)) auto var(--space-6); }
+.booking__alt { text-align: center; margin: var(--space-6) auto 0; color: var(--color-on-dark-muted); }
+.booking__alt a { color: inherit; }
+.gallery__more { justify-content: center; }
+.section--dark .booking__card .muted { color: var(--color-ink-muted); }
