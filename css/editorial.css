@@ -209,7 +209,6 @@ h1 em, h2 em { color: var(--color-gold-deep); }
 
 /* ---------- Galeria ---------- */
 .gallery { gap: var(--space-3); }
-.gallery__item--link a { border-radius: 0; }
 .gallery__caption {
   left: 0; right: 0; bottom: 0;
   padding: var(--space-6) var(--space-4) var(--space-4);

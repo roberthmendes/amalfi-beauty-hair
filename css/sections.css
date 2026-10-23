@@ -117,10 +117,10 @@ main:focus { outline: none; }
   padding: 0;
 }
 .gallery figure { position: relative; height: 100%; }
-.gallery__item--link a { display: block; height: 100%; color: inherit; text-decoration: none; border-radius: var(--radius-lg); }
 .gallery .media { --ratio: 4 / 3; height: 100%; }
 .gallery .media img { transition: transform var(--dur-slow) var(--ease); }
 .gallery__item:hover .media img { transform: scale(1.04); }
+.gallery__item--brows .media img { object-position: center 62%; }
 .gallery__caption {
   position: absolute; left: var(--space-3); right: var(--space-3); bottom: var(--space-3);
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2);
@@ -131,18 +131,16 @@ main:focus { outline: none; }
   font-size: var(--fs-sm);
   line-height: 1.4;
 }
-.gallery__item--link .media img { object-position: center 40%; }
-.gallery__item--link .gallery__caption { background: transparent; color: var(--color-on-dark); font-family: var(--font-display); font-size: var(--fs-lg); }
 .gallery__more { margin-top: var(--space-6); max-width: none; }
 @media (min-width: 36rem) {
   .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 15rem; }
   .gallery .media { aspect-ratio: auto; }
   .gallery__item--tall { grid-row: span 2; }
-  .gallery__item--link { grid-column: span 2; } /* fills the 2-column grid */
+  .gallery__item--fill { grid-column: span 2; } /* 3 tall + 3 single: last one closes the 2-column grid */
 }
 @media (min-width: 64rem) {
   .gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 17rem; gap: var(--space-5); }
-  .gallery__item--link { grid-column: auto; } /* 3 tall + 3 single = full 3x3 */
+  .gallery__item--fill { grid-column: auto; } /* 3 tall + 3 single = full 3x3 */
 }
 
 /* ---------- Marcações (dark band) ---------- */
