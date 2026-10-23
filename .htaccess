@@ -1,0 +1,21 @@
+# Amalfi Beauty Hair — SEO e desempenho (Hostinger / LiteSpeed)
+RewriteEngine On
+
+# Um só endereço para o Google: www -> sem www (301)
+RewriteCond %{HTTP_HOST} ^www\.amalfibeautyhair\.com$ [NC]
+RewriteRule ^(.*)$ https://amalfibeautyhair.com/$1 [R=301,L]
+
+# /index.html -> / (evita URL duplicado)
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ https://amalfibeautyhair.com/ [R=301,L]
+
+# Ficheiros internos de documentação não são públicos
+RewriteRule \.md$ - [F,L]
+
+# Cache no browser para imagens e ícones (as fotos raramente mudam)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>

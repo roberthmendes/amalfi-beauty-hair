@@ -5,6 +5,7 @@ Todas as fotografias são do próprio salão, retiradas do Instagram [@amalfi.be
 | Ficheiro | Onde aparece | Origem | Resolução original |
 |---|---|---|---|
 | `img/cabelo-loiro-ondulado-salao-estoril.jpg` | Início | [@amalfi.beautyhair — "Loiro Golden"](https://www.instagram.com/amalfi.beautyhair/p/DeMgnbeI7Kq/) | 3072×4096 |
+| `img/amalfi-beauty-hair-salao-estoril-partilha.jpg` | Imagem de partilha (Open Graph, 1200×630) | Recorte de `img/cabelo-loiro-ondulado-salao-estoril.jpg` | 1200×1500 |
 | `img/salao-de-beleza-brasileiro-estoril.jpg` | Sobre | Fotografia do cliente `_cliente/PHOTO-2026-10-18-16-44-11.jpg` (receção) | 1200×1600 |
 | `img/salao-amalfi-estoril-espaco-1.jpg` … `-espaco-4.jpg` | Sobre · O Espaço | Fotografias do cliente `_cliente/PHOTO-2026-10-18-16-43-34`, `-16-43-40`, `-16-44-38`, `-16-44-59` | 1200×1600 |
 | `img/cabeleireiro-loiros-madeixas-estoril.jpg` | Serviços (Hair) | [@natalia.hair.cascais — antes e depois](https://www.instagram.com/natalia.hair.cascais/p/DekZCxAjRBV/) (2.ª imagem: "antes") | 3072×4096 |
