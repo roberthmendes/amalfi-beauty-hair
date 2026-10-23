@@ -73,6 +73,8 @@ h1 em, h2 em { color: var(--color-gold-deep); }
 .btn--ghost { padding-inline: 0; min-height: 2.75rem; border-bottom: 1px solid currentColor; border-radius: 0; color: var(--color-ink); }
 .btn--ghost::after { display: none; }
 .btn--ghost:hover { color: var(--color-gold-deep); text-decoration: none; }
+.section--dark .btn--ghost { color: var(--color-on-dark); }
+.section--dark .btn--ghost:hover { color: var(--color-gold-light); }
 
 .btn--whatsapp {
   background: var(--color-cta);
@@ -98,6 +100,9 @@ h1 em, h2 em { color: var(--color-gold-deep); }
   letter-spacing: var(--tracking-label); text-transform: uppercase;
 }
 .fab:hover { transform: translateY(-2px); background: var(--color-ink); color: var(--color-gold-light); }
+@media (min-width: 64rem) {
+  .fab { display: none; }
+}
 .fab svg { width: 1.5rem; height: 1.5rem; }
 .fab::before { background: var(--color-cta); animation-duration: 3.2s; }
 @keyframes fab-pulse { 0% { transform: scale(1); opacity: 0.4; } 70%, 100% { transform: scale(1.18, 1.35); opacity: 0; } }
@@ -190,7 +195,8 @@ h1 em, h2 em { color: var(--color-gold-deep); }
 .about__visual { padding: 0; width: 100%; max-width: 32rem; }
 .about__media { box-shadow: none; }
 .about__stats { border-top: 1px solid var(--color-ink); }
-.about__stats .stat__value { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); font-weight: 500; color: var(--color-ink); white-space: nowrap; }
+.about__stats .stat { align-content: start; }
+.about__stats .stat__value { font-size: clamp(1.625rem, 1.2rem + 0.9vw, 2rem); font-weight: 500; color: var(--color-ink); white-space: nowrap; }
 .about__cta { align-items: flex-start; }
 .espaco { gap: var(--space-3); margin-top: var(--space-9); }
 .espaco .media { box-shadow: none; }
@@ -212,6 +218,7 @@ h1 em, h2 em { color: var(--color-gold-deep); }
 }
 .gallery__caption .tag { flex-basis: 100%; color: var(--color-gold-light); }
 .gallery__more { justify-content: flex-start; margin-top: var(--space-7); gap: var(--space-6); }
+.gallery__more .btn--ghost { text-align: left; }
 
 /* ---------- Marcações: two columns on the dark band ---------- */
 .booking__grid { display: grid; gap: var(--space-7); align-items: start; }
